@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- tracking.html = INFORMASI PENGIRIMAN -->
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking Pengiriman - Toko Buku Kampus</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="tracking">
+  <header class="topbar">
+    <div class="topbar-isi">
+      <a class="brand" href="dashboard.html">
+        <img src="assets/logo.jpeg" alt="Logo" width="36" height="36"><span>Toko Buku Kampus</span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="stok.html">Stok</a>
+        <a href="checkout.html">Pemesanan</a>
+        <a href="tracking.html" class="aktif">Tracking</a>
+      </nav>
+      <div class="user-box">
+        <span id="namaUser"></span>
+        <button type="button" id="btnLogout" class="btn btn-kecil btn-outline">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="judul-halaman">Informasi Pengiriman</h1>
+    <p class="sub-judul">Masukkan Nomor Delivery Order untuk melacak status pesanan Anda.</p>
+
+    <section class="kartu" aria-labelledby="hCari">
+      <h2 id="hCari">Cari Nomor Delivery Order</h2>
+      <form id="formTracking" novalidate>
+        <div class="form-group">
+          <label for="noDO">Nomor Delivery Order</label>
+          <div class="cari-box">
+            <input type="text" id="noDO" placeholder="Contoh: 20230012" autocomplete="off">
+            <button type="submit" class="btn">Cari</button>
+          </div>
+          <small class="pesan-error"></small>
+        </div>
+      </form>
+      <div class="chip-wrap">Coba nomor contoh: <span id="daftarChip"></span></div>
+    </section>
+
+    <!-- Hasil pencarian dirender oleh JavaScript -->
+    <section id="hasilTracking" aria-live="polite"></section>
+  </main>
+
+  <footer class="footer">&copy; 2026 Toko Buku Kampus — Tugas UTS Pemrograman Web 1</footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
