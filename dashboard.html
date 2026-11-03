@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- dashboard.html = MENU UTAMA -->
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Toko Buku Kampus</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- CSS INTERNAL -->
+  <style>
+    #jamLokal { font-size: .95rem; opacity: .9; }
+    .menu-judul { margin: 6px 0 14px; }
+  </style>
+</head>
+
+<body data-page="dashboard">
+  <header class="topbar">
+    <div class="topbar-isi">
+      <a class="brand" href="dashboard.html">
+        <img src="assets/logo.png" alt="Logo" width="36" height="36"><span>Toko Buku Kampus</span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <a href="dashboard.html" class="aktif">Dashboard</a>
+        <a href="stok.html">Stok</a>
+        <a href="checkout.html">Pemesanan</a>
+        <a href="tracking.html">Tracking</a>
+      </nav>
+      <div class="user-box">
+        <span id="namaUser"></span>
+        <button type="button" id="btnLogout" class="btn btn-kecil btn-outline">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Greeting berdasarkan waktu lokal (diisi oleh JavaScript) -->
+    <section class="hero" aria-labelledby="greeting">
+      <div>
+        <h1 id="greeting">Selamat Datang!</h1>
+        <p id="jamLokal"></p>
+        <p id="infoRole"></p>
+      </div>
+      <a href="checkout.html" class="btn btn-kuning">+ Buat Pesanan Baru</a>
+    </section>
+
+    <h2 class="menu-judul">Menu Utama</h2>
+    <section class="menu-grid" aria-label="Menu utama">
+      <a class="kartu-menu" href="stok.html">
+        <span class="ikon" aria-hidden="true">📚</span>
+        <strong>Informasi Stok / Katalog</strong>
+        <span class="ket">Lihat dan tambah stok buku</span>
+      </a>
+      <a class="kartu-menu" href="tracking.html">
+        <span class="ikon" aria-hidden="true">🚚</span>
+        <strong>Tracking Pengiriman</strong>
+        <span class="ket">Lacak dengan Nomor DO</span>
+      </a>
+      <button type="button" class="kartu-menu" id="kartuLaporan">
+        <span class="ikon" aria-hidden="true">📊</span>
+        <strong>Laporan Pemesanan</strong>
+        <span class="ket">Ringkasan penjualan</span>
+      </button>
+      <button type="button" class="kartu-menu" id="kartuHistory">
+        <span class="ikon" aria-hidden="true">🧾</span>
+        <strong>History Transaksi</strong>
+        <span class="ket">Riwayat semua pesanan</span>
+      </button>
+    </section>
+
+    <!-- Rak katalog pilihan: isinya dibuat oleh JavaScript dari dataKatalogBuku -->
+    <h2 class="menu-judul" style="margin-top:28px;">Katalog Pilihan</h2>
+    <section class="rak" id="rakBuku" aria-label="Katalog pilihan"></section>
+  </main>
+
+  <footer class="footer">&copy; 2026 Toko Buku Kampus — Tugas UTS Pemrograman Web 1</footer>
+
+  <!-- ========== MODAL LAPORAN PEMESANAN ========== -->
+  <div class="modal" id="modalLaporan" role="dialog" aria-modal="true" aria-labelledby="judulLaporan">
+    <div class="modal-isi modal-lebar">
+      <button type="button" class="modal-tutup" data-tutup="modalLaporan" aria-label="Tutup">&times;</button>
+      <h2 id="judulLaporan">Laporan Pemesanan</h2>
+      <div class="stat-grid" id="statLaporan"></div>
+      <h3>Rekap per Ekspedisi</h3>
+      <div class="tabel-wrap">
+        <table>
+          <thead><tr><th>Ekspedisi</th><th class="tengah">Jumlah Pesanan</th><th class="kanan">Total Pembayaran</th></tr></thead>
+          <tbody id="tbodyLaporan"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL HISTORY TRANSAKSI ========== -->
+  <div class="modal" id="modalHistory" role="dialog" aria-modal="true" aria-labelledby="judulHistory">
+    <div class="modal-isi modal-lebar">
+      <button type="button" class="modal-tutup" data-tutup="modalHistory" aria-label="Tutup">&times;</button>
+      <h2 id="judulHistory">History Transaksi</h2>
+      <div class="form-group">
+        <label for="cariHistory">Cari (nomor DO / nama pemesan)</label>
+        <input type="text" id="cariHistory" placeholder="Contoh: DO2026001 atau Budi">
+      </div>
+      <div class="tabel-wrap">
+        <table>
+          <thead>
+            <tr><th>Tgl Kirim</th><th>No. DO</th><th>Pemesan</th><th>Ekspedisi</th><th class="kanan">Total</th><th>Status</th><th class="tengah">Aksi</th></tr>
+          </thead>
+          <tbody id="tbodyHistory"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
