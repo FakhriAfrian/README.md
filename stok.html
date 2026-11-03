@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- stok.html = INFORMASI STOK / KATALOG -->
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stok Buku - Toko Buku Kampus</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="stok">
+  <header class="topbar">
+    <div class="topbar-isi">
+      <a class="brand" href="dashboard.html">
+        <img src="assets/logo.jpeg" alt="Logo" width="36" height="36"><span>Toko Buku Kampus</span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="stok.html" class="aktif">Stok</a>
+        <a href="checkout.html">Pemesanan</a>
+        <a href="tracking.html">Tracking</a>
+      </nav>
+      <div class="user-box">
+        <span id="namaUser"></span>
+        <button type="button" id="btnLogout" class="btn btn-kecil btn-outline">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="judul-halaman">Informasi Stok / Katalog Buku</h1>
+    <p class="sub-judul">Data ditampilkan secara dinamis dari variabel <code>dataKatalogBuku</code> pada <code>data.js</code>.</p>
+
+    <!-- Ringkasan angka -->
+    <section class="stat-grid" aria-label="Ringkasan stok">
+      <div class="stat"><b id="sumJudul">0</b><small>Judul Buku</small></div>
+      <div class="stat"><b id="sumStok">0</b><small>Total Stok</small></div>
+      <div class="stat"><b id="sumHabis">0</b><small>Judul Stok Habis</small></div>
+    </section>
+
+    <!-- Form tambah stok baru -->
+    <section class="kartu" aria-labelledby="judulForm">
+      <h2 id="judulForm">Tambah Stok Baru</h2>
+      <form id="formStok" novalidate>
+        <div class="baris-form">
+          <div class="form-group">
+            <label for="kode">Kode Barang</label>
+            <input type="text" id="kode" placeholder="Contoh: ASIP4302" maxlength="8">
+            <small class="pesan-error"></small>
+          </div>
+          <div class="form-group">
+            <label for="nama">Nama Barang</label>
+            <input type="text" id="nama" placeholder="Judul buku">
+            <small class="pesan-error"></small>
+          </div>
+          <div class="form-group">
+            <label for="jenis">Jenis Barang</label>
+            <select id="jenis">
+              <option value="">-- Pilih jenis --</option>
+              <option>Buku Ajar</option>
+              <option>Modul</option>
+              <option>Buku Referensi</option>
+              <option>Lainnya</option>
+            </select>
+            <small class="pesan-error"></small>
+          </div>
+          <div class="form-group">
+            <label for="edisi">Edisi</label>
+            <input type="number" id="edisi" min="1" max="20" placeholder="Contoh: 2">
+            <small class="pesan-error"></small>
+          </div>
+          <div class="form-group">
+            <label for="stok">Jumlah Stok</label>
+            <input type="number" id="stok" min="0" placeholder="Contoh: 100">
+            <small class="pesan-error"></small>
+          </div>
+          <div class="form-group">
+            <label for="harga">Harga (Rp)</label>
+            <input type="number" id="harga" min="1" placeholder="Contoh: 175000">
+            <small class="pesan-error"></small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-kuning">+ Tambah ke Tabel</button>
+      </form>
+    </section>
+
+    <!-- Tabel stok -->
+    <section class="kartu" aria-labelledby="judulTabel">
+      <h2 id="judulTabel">Daftar Stok Buku</h2>
+      <div class="form-group">
+        <label for="cariStok">Cari buku</label>
+        <input type="text" id="cariStok" placeholder="Ketik kode, nama, atau jenis barang...">
+      </div>
+      <div class="tabel-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="tengah">No</th><th>Cover</th><th>Kode Barang</th><th>Nama Barang</th><th>Jenis</th>
+              <th class="tengah">Edisi</th><th class="tengah">Stok</th><th class="kanan">Harga</th><th class="tengah">Aksi</th>
+            </tr>
+          </thead>
+          <!-- Baris diisi oleh JavaScript (DOM) -->
+          <tbody id="tbodyStok"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">&copy; 2026 Toko Buku Kampus — Tugas UTS Pemrograman Web 1</footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
