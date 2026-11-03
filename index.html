@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- index.html = HALAMAN LOGIN -->
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login Toko Buku Kampus">
+  <title>Login - Toko Buku Kampus</title>
+
+  <!-- CSS EKSTERNAL -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CSS INTERNAL: khusus tampilan halaman login -->
+  <style>
+    body.halaman-login {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #14305a 0%, #1e4073 55%, #3f7fd6 100%);
+      padding: 16px;
+    }
+    .login-layout { display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: center; width: min(960px, 100%); }
+    .promo { color: #fff; }
+    .promo h2 { color: #fff; font-size: 2rem; margin-bottom: 8px; }
+    .promo p { color: #d6e0f0; margin-bottom: 22px; }
+    .rak-login { display: flex; gap: 12px; flex-wrap: wrap; }
+    .rak-login img { width: 92px; height: 130px; object-fit: cover; border-radius: 6px; box-shadow: 0 8px 18px rgba(0,0,0,.4); transition: transform .2s; }
+    .rak-login img:hover { transform: translateY(-8px) rotate(-2deg); }
+    .login-card { width: 100%; background: #fff; border-radius: 16px; padding: 32px 28px; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .login-kepala { text-align: center; margin-bottom: 22px; }
+    .login-kepala img { margin: 0 auto 10px; border-radius: 16px; }
+    .login-kepala p { color: #6b7280; font-size: .92rem; }
+    .info-demo { background: #fff8e6; border-left: 4px solid #f5b041; padding: 10px 12px; border-radius: 6px; font-size: .85rem; margin-bottom: 18px; }
+    .tautan-bawah { display: flex; justify-content: space-between; margin-top: 14px; }
+    @media (max-width: 800px) { .login-layout { grid-template-columns: 1fr; } .promo { display: none; } }
+  </style>
+</head>
+
+<body data-page="login" class="halaman-login">
+  <div class="login-layout">
+
+    <!-- Sisi kiri: rak buku (gambar dari folder img/) -->
+    <section class="promo" aria-label="Katalog pilihan">
+      <h2>Toko Buku Kampus</h2>
+      <p>Pesan buku ajar dengan mudah, pantau pengirimannya sampai ke tangan Anda.</p>
+      <div class="rak-login">
+        <img src="img/pengantar_komunikasi.jpg" alt="Sampul buku Pengantar Ilmu Komunikasi">
+        <img src="img/manajemen_keuangan.jpg" alt="Sampul buku Manajemen Keuangan">
+        <img src="img/kepemimpinan.jpg" alt="Sampul buku Kepemimpinan">
+        <img src="img/mikrobiologi.jpg" alt="Sampul buku Mikrobiologi Dasar">
+        <img src="img/paud_perkembangan.jpg" alt="Sampul buku Perkembangan Anak Usia Dini">
+      </div>
+    </section>
+
+    <!-- Sisi kanan: kartu login -->
+    <main class="login-card">
+      <header class="login-kepala">
+        <img src="assets/logo.jpeg" alt="Logo Toko Buku Kampus" width="72" height="72">
+        <h1>Masuk</h1>
+        <p>Silakan login untuk melakukan pemesanan buku</p>
+      </header>
+
+      <!-- CSS INLINE: contoh atribut style langsung pada elemen -->
+      <aside class="info-demo" style="color:#7a5200;">
+        <strong>Akun demo:</strong> rina@gmail.com / rina123<br>
+        (admin: siti@gmail.com / siti123)
+      </aside>
+
+      <!-- novalidate: validasi ditangani sendiri oleh JavaScript -->
+      <form id="formLogin" novalidate>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="nama@email.com" autocomplete="username">
+          <small class="pesan-error"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password">
+          <small class="pesan-error"></small>
+        </div>
+
+        <label class="cek" for="tampilPass" style="margin-bottom:16px;">
+          <input type="checkbox" id="tampilPass"> Tampilkan password
+        </label>
+
+        <button type="submit" class="btn btn-blok">Login</button>
+      </form>
+
+      <!-- Tombol pembuka modal box (diproses oleh atribut data-buka di script.js) -->
+      <div class="tautan-bawah">
+        <button type="button" class="btn-link" data-buka="modalLupa">Lupa Password</button>
+        <button type="button" class="btn-link" data-buka="modalDaftar">Daftar</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========== MODAL LUPA PASSWORD ========== -->
+  <div class="modal" id="modalLupa" role="dialog" aria-modal="true" aria-labelledby="judulLupa">
+    <div class="modal-isi">
+      <button type="button" class="modal-tutup" data-tutup="modalLupa" aria-label="Tutup">&times;</button>
+      <h2 id="judulLupa">Lupa Password</h2>
+      <p class="sub-judul">Masukkan email Anda, kami kirim tautan reset (simulasi).</p>
+      <form id="formLupa" novalidate>
+        <div class="form-group">
+          <label for="emailLupa">Email terdaftar</label>
+          <input type="email" id="emailLupa" placeholder="nama@email.com">
+          <small class="pesan-error"></small>
+        </div>
+        <button type="submit" class="btn btn-blok">Kirim Tautan Reset</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== MODAL DAFTAR ========== -->
+  <div class="modal" id="modalDaftar" role="dialog" aria-modal="true" aria-labelledby="judulDaftar">
+    <div class="modal-isi">
+      <button type="button" class="modal-tutup" data-tutup="modalDaftar" aria-label="Tutup">&times;</button>
+      <h2 id="judulDaftar">Daftar Akun Baru</h2>
+      <p class="sub-judul">Isi data berikut untuk membuat akun.</p>
+      <form id="formDaftar" novalidate>
+        <div class="form-group">
+          <label for="dNama">Nama Lengkap</label>
+          <input type="text" id="dNama" placeholder="Nama lengkap">
+          <small class="pesan-error"></small>
+        </div>
+        <div class="form-group">
+          <label for="dEmail">Email</label>
+          <input type="email" id="dEmail" placeholder="nama@email.com">
+          <small class="pesan-error"></small>
+        </div>
+        <div class="form-group">
+          <label for="dPass">Password</label>
+          <input type="password" id="dPass" placeholder="Minimal 6 karakter" autocomplete="new-password">
+          <small class="pesan-error"></small>
+        </div>
+        <div class="form-group">
+          <label for="dPass2">Konfirmasi Password</label>
+          <input type="password" id="dPass2" placeholder="Ulangi password" autocomplete="new-password">
+          <small class="pesan-error"></small>
+        </div>
+        <button type="submit" class="btn btn-kuning btn-blok">Daftar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- data.js harus dimuat sebelum script.js -->
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
